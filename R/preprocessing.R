@@ -1,5 +1,9 @@
 library(tidyverse)
 
+# This should be revised to make use of the ordinal data available in Bartle2016:
+# "dev/Bartle2016/UK_Preferences_2012.xlsx"
+# https://discover.ukdataservice.ac.uk/catalogue/?sn=852280
+
 ukdata <- read_tsv("dev/McGann2014/ukdata_3.txt") %>%
     group_by(year, variable, topic) %>% 
         summarize(y_r = sum(round(leftp/100 * n)), # When two surveys ask the same question in
