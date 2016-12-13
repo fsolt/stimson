@@ -24,9 +24,9 @@ ukmp <- read_excel("dev/Bartle2016/UK_Preferences_2012.xlsx") %>%
                n = ifelse(t <= 100, t*10, t)) %>%  # assume 1000 resp surveyed if y as %
     ungroup() %>%
     filter(cutpoint!=0) %>% 
-    group_by(year, variable_cp, variable, topic) %>% 
-        summarize(y_r = sum(y_r), # When two surveys ask the same question in
-                  n = sum(n)) %>% # the same year, add samples together
+    group_by(year, variable_cp, variable, topic, cutpoint) %>% 
+        summarize(y_r = round(sum(y_r)), # When two surveys ask the same question in
+                  n = round(sum(n))) %>% # the same year, add samples together
     ungroup() %>% 
     mutate(ccode = 1,
            tcode = as.integer(year - min(year) + 1),
