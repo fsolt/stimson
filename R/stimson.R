@@ -4,10 +4,10 @@ library(beepr)
 
 ### Delete these when turning into a function
 seed <- 324
-iter <- 4000
+iter <- 3000
 chains <- 4
 cores <- chains
-x <- ukdata
+x <- ukmp
 robust <- FALSE
 constant_alpha <- FALSE
 ###
