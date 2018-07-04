@@ -1,6 +1,5 @@
 library(tidyverse)
 library(readxl)
-library(stringr)
 
 # Bartle2016: https://discover.ukdataservice.ac.uk/catalogue/?sn=852280
 
@@ -35,4 +34,11 @@ ukmp <- read_excel("dev/Bartle2016/UK_Preferences_2012.xlsx") %>%
            ktcode = (ccode-1)*max(tcode)+tcode) %>%
     arrange(ccode, tcode, qcode, rcode)   
     
-    
+ukmp_econ <- ukmp %>%
+    filter(topic<200) %>% 
+    mutate(ccode = 1,
+           tcode = as.integer(year - min(year) + 1),
+           qcode = as.numeric(factor(variable, levels = unique(variable))),
+           rcode = as.numeric(factor(variable_cp, levels = unique(variable_cp))),
+           ktcode = (ccode-1)*max(tcode)+tcode) %>%
+    arrange(ccode, tcode, qcode, rcode)    
